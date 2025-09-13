@@ -1,6 +1,6 @@
 function inputs_cantilever2d(OPT::OPT_struct, FE::FE_struct)
   ## ============Input file================
-  FE.mesh_input.type = "generate"
+  FE.mesh_input.type = "Abaqus_Mesh"
   if OPT.fd_check == 1
     FE.mesh_input.box_dimensions = [10, 5];
     FE.mesh_input.elements_per_side = [10, 5];

@@ -1,6 +1,6 @@
 function FE_compute_element_info(FE::FE_struct)
     el_type = FE.elem_type[1]
-    dim = el_type in (:Tri3, :Quad4) ? 2 : 3
+    dim = el_type in (:CPS3, :Quad4) ? 2 : 3
     FE.dim = dim
 
     FE.elem_vol = zeros(FE.n_elem)
@@ -21,7 +21,7 @@ function FE_compute_element_info(FE::FE_struct)
 
 
         if dim == 2
-            if el_type == :Tri3
+            if el_type == :CPS3
                 x1, y1 = coords[:, 1]
                 x2, y2 = coords[:, 2]
                 x3, y3 = coords[:, 3]
