@@ -41,6 +41,9 @@ function init_FE(OPT::OPT_struct, FE::FE_struct)
             FE_elem_type[e] = model["element_types"][eid]
         end
         # =========
+        FE.DirichletBC = model["node_sets"]["DirichletBC"]
+        FE.NeumannBC = model["node_sets"]["NeumannBC"]
+        # =========
         FE.n_elem = nelem
         FE.n_node = nnodes
         FE.coords = FE_coords

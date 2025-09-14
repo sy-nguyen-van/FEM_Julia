@@ -11,7 +11,8 @@ function FE_assemble_stiffness_matrix(OPT::OPT_struct, FE::FE_struct)
             repeat(OPT.pen_rho_e[:], 1, FE.n_edof, FE.n_edof), [2, 3, 1])
 
         # Ersatz material: 
-        penalized_Ke = penalized_rho_e .* FE.Ke
+        # penalized_Ke = penalized_rho_e .* FE.Ke
+        penalized_Ke = FE.Ke
         FE.sK_penal = penalized_Ke[:]
     else
         FE.sK_penal = FE.Ke[:]

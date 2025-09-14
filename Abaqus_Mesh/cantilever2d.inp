@@ -1569,6 +1569,13 @@
  998, 560, 559, 508
  999, 509, 510, 561
 1000, 561, 560, 509
+*Nset, nset=_PickedSet7, internal, generate
+   1,  561,    1
+*Elset, elset=_PickedSet7, internal, generate
+    1,  1000,     1
+** Section: Section-1
+*Solid Section, elset=_PickedSet7, material=Material-1
+,
 *End Part
 **  
 **
@@ -1579,4 +1586,46 @@
 *Instance, name=Part-1-1, part=Part-1
 *End Instance
 **  
+*Nset, nset=DirichletBC, instance=Part-1-1, generate
+  51,  561,   51
+*Nset, nset=NeumannBC, instance=Part-1-1, generate
+   1,  511,   51
 *End Assembly
+** 
+** MATERIALS
+** 
+*Material, name=Material-1
+*Elastic
+119000., 0.34
+** 
+** BOUNDARY CONDITIONS
+** 
+** Name: BC-1 Type: Symmetry/Antisymmetry/Encastre
+*Boundary
+DirichletBC, ENCASTRE
+** ----------------------------------------------------------------
+** 
+** STEP: Step-1
+** 
+*Step, name=Step-1, nlgeom=NO
+*Static
+1., 1., 1e-05, 1.
+** 
+** LOADS
+** 
+** Name: Load-1   Type: Concentrated force
+*Cload
+NeumannBC, 2, -1.
+** 
+** OUTPUT REQUESTS
+** 
+*Restart, write, frequency=0
+** 
+** FIELD OUTPUT: F-Output-1
+** 
+*Output, field, variable=PRESELECT
+** 
+** HISTORY OUTPUT: H-Output-1
+** 
+*Output, history, variable=PRESELECT
+*End Step

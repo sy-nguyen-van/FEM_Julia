@@ -65,10 +65,6 @@ function Ke_Ce_Update!(FE_Ce, FE_Ke, FE_B0e,
 
         detM = det(M)
         volume = abs(detM) / 6.0
-        if volume <= 0
-            # just ensure positive volume
-            volume = abs(volume)
-        end
 
         # coefficients [a_i; b_i; c_i; d_i] satisfy M * [a_i b_i c_i d_i]' = e_i
         # where e_i is unit vector selecting node i. Equivalently compute inverse of M:

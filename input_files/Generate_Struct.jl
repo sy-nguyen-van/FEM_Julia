@@ -225,6 +225,8 @@ mutable struct FE_struct
     dJdu::Matrix{Float64}
     lambda::Matrix{Float64}
     elem_type::Vector{Symbol}
+    DirichletBC::Vector{Int64}
+    NeumannBC::Vector{Int64}
 end
 #--------------------------------------------
 function Generate_Struct()
@@ -351,7 +353,9 @@ function Generate_Struct()
         rand(1), # FE.De
         zeros(1, 1),   # dJdu
         zeros(1, 1),       # FE_lambda
-        [:Tet4] # elem_type::Vector{Symbol}
+        [:Tet4], # elem_type::Vector{Symbol}
+        [1], # DirichletBC
+        [1], # NeumannBC
 
     )
     #--------------------------------------------

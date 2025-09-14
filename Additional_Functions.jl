@@ -30,6 +30,7 @@ function Additional_Functions()
     include("FE_routines/FE_compute_element_stiffness.jl")
     include("FE_routines/compute_predefined_node_sets.jl")
     include("FE_routines/Ke_Ce_Update.jl")
+    include("FE_routines/Be_Area.jl")
 
 
     #------------------------------------------------------
@@ -37,6 +38,7 @@ function Additional_Functions()
     include("functions/obj_nonlcon.jl")
     include("functions/volume_fraction.jl")
     include("functions/compliance.jl")
+    include("functions/compute_stress.jl")
 
     #------------------------------------------------------
     push!(LOAD_PATH, "FD_check")

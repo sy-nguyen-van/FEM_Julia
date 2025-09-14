@@ -1,14 +1,6 @@
 function inputs_cantilever3d(OPT::OPT_struct, FE::FE_struct)
   ## ============Input file================
   FE.mesh_input.type = "Abaqus_Mesh"
-
-  if OPT.fd_check == 1
-    FE.mesh_input.box_dimensions = [10, 4, 2]; # ***
-    FE.mesh_input.elements_per_side = [10, 4, 2]; # ***
-  else
-    FE.mesh_input.box_dimensions = [120, 24, 12];  
-    FE.mesh_input.elements_per_side = FE.mesh_input.box_dimensions;  
-  end
   ## =======================================================================
   ## Material information
   # Specify the Young"s modulus and Poisson ratio 
