@@ -1,4 +1,4 @@
-function volume_fraction(OPT, FE, SGs)
+function volume_fraction(OPT, FE)
     #
     # This function computes the volume fraction and its sensitivities
     # based on the last geometry projection

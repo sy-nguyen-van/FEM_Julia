@@ -1,4 +1,3 @@
-# -*- coding: mbcs -*-
 from part import *
 from material import *
 from section import *
@@ -44,3 +43,4 @@ mdb.jobs['Lbracket3d']._Message(COMPLETED, {'phase': STANDARD_PHASE,
     'message': 'Analysis phase complete', 'jobName': 'Lbracket3d'})
 mdb.jobs['Lbracket3d']._Message(JOB_COMPLETED, {
     'time': 'Sun Sep 14 11:33:55 2025', 'jobName': 'Lbracket3d'})
+# Save by snv22002 on 2025_09_14-13.53.07; build 2022 2021_09_15-13.57.30 176069

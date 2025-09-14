@@ -47,16 +47,11 @@ function writevtk(OPT::OPT_struct, FE::FE_struct, folder)
         println(fid, vtk_type)
     end
     # ====================
-    n_scalar_fields = 2 # density + stress
+    n_scalar_fields = FE.nloads # density + stress
     # Write elemental density
     println(fid, "CELL_DATA " * string(FE.n_elem) * " ")
     println(fid, "FIELD FieldData  ", n_scalar_fields)
-    println(fid, "density 1 ", FE.n_elem, " float")
-    for iel in 1:FE.n_elem
-        println(fid, OPT.pen_rho_e[iel])
-    end
     # ========
-    # Write elemental stress
     # Write elemental STRESS
     for iload in 1:FE.nloads
         println(fid, "stress_iload_" * string(iload) * " 1 ", FE.n_elem, " float ")
@@ -65,11 +60,9 @@ function writevtk(OPT::OPT_struct, FE::FE_struct, folder)
             println(fid, stress, " ")
         end
     end
-
     # ========
     println(fid, "POINT_DATA ", FE.n_node)
-    nloads = size(FE.U, 2)  # number of load cases
-    println(fid, "FIELD FieldData ", nloads)
+    println(fid, "FIELD FieldData ", FE.nloads )
     for iload in 1:FE.nloads
         println(fid, "displacement_", iload, " 3 ", FE.n_node, " float")
         for inode in 1:FE.n_node

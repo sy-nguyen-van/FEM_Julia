@@ -1,5 +1,5 @@
 
-function maximum_stress_multi_scales(OPT::OPT_struct, FE::FE_struct,SGs::SGs_struct)
+function maximum_stress_multi_scales(OPT::OPT_struct, FE::FE_struct)
     P_norm = OPT.aggregation_power
     #------------------------------------------------
     sig_vm = zeros(FE.n_elem, FE.nloads)

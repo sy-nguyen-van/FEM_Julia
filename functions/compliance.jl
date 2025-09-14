@@ -1,4 +1,4 @@
-function compliance(OPT::OPT_struct, FE::FE_struct,SGs::SGs_struct)
+function compliance(OPT::OPT_struct, FE::FE_struct)
     #
     # This function computes the mean compliance and its sensitivities
     # based on the last finite element analysis

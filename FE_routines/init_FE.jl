@@ -59,8 +59,6 @@ function init_FE(OPT::OPT_struct, FE::FE_struct)
     # # # # assemble the boundary conditions
     FE = FE_assemble_BC(FE)
     # # # # initilization of optimization
-    OPT, FE = init_optimization(OPT, FE)
-    # # # # compute the element stiffness matrices
     # Material elasticity tensor
     if FE.dim == 2
         FE.Ce = SharedArray{Float64}(3, 3, FE.n_elem)
