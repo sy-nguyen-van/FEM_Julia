@@ -44,111 +44,55 @@ end
 function Be_Area(::Val{:Tet4}, e, FE_coords, FE_elem_node)
     # node ids for tetra
     nids = FE_elem_node[:, e]
-    xI, yI, zI = FE_coords[1, nids[1]], FE_coords[2, nids[1]], FE_coords[3, nids[1]]
-    xJ, yJ, zJ = FE_coords[1, nids[2]], FE_coords[2, nids[2]], FE_coords[3, nids[2]]
-    xK, yK, zK = FE_coords[1, nids[3]], FE_coords[2, nids[3]], FE_coords[3, nids[3]]
-    xL, yL, zL = FE_coords[1, nids[4]], FE_coords[2, nids[4]], FE_coords[3, nids[4]]
+    x1, y1, z1 = FE_coords[1, nids[1]], FE_coords[2, nids[1]], FE_coords[3, nids[1]]
+    x2, y2, z2 = FE_coords[1, nids[2]], FE_coords[2, nids[2]], FE_coords[3, nids[2]]
+    x3, y3, z3 = FE_coords[1, nids[3]], FE_coords[2, nids[3]], FE_coords[3, nids[3]]
+    x4, y4, z4 = FE_coords[1, nids[4]], FE_coords[2, nids[4]], FE_coords[3, nids[4]]
 
-    # Volume
-    V6 = det([1 xI yI zI;
-              1 xJ yJ zJ;
-              1 xK yK zK;
-              1 xL yL zL])
-    V = abs(V6) / 6.0
+    xyz = [1 x1 y1 z1; 1 x2 y2 z2; 1 x3 y3 z3; 1 x4 y4 z4]
+    V = det(xyz) / 6
+    bb1 = [1 y2 z2; 1 y3 z3; 1 y4 z4]
+    bb2 = [1 y1 z1; 1 y3 z3; 1 y4 z4]
+    bb3 = [1 y1 z1; 1 y2 z2; 1 y4 z4]
+    bb4 = [1 y1 z1; 1 y2 z2; 1 y3 z3]
 
-    # Coefficients
+    cc1 = [x2 1 z2; x3 1 z3; x4 1 z4]
+    cc2 = [x1 1 z1; x3 1 z3; x4 1 z4]
+    cc3 = [x1 1 z1; x2 1 z2; x4 1 z4]
+    cc4 = [x1 1 z1; x2 1 z2; x3 1 z3]
 
-    b = -[
-        det([1 yJ zJ; 
-            1 yK zK; 
-            1 yL zL]),
-        det([1 yK zK; 
-            1 yL zL; 
-            1 yI zI]),
-        det([1 yL zL; 
-            1 yI zI; 
-            1 yJ zJ]),
-        det([1 yI zI; 
-            1 yJ zJ; 
-            1 yK zK])
-    ]
+    dd1 = [x2 y2 1; x3 y3 1; x4 y4 1]
+    dd2 = [x1 y1 1; x3 y3 1; x4 y4 1]
+    dd3 = [x1 y1 1; x2 y2 1; x4 y4 1]
+    dd4 = [x1 y1 1; x2 y2 1; x3 y3 1]
 
-    c = [
-        det([xJ 1 zJ; 
-            xK 1 zK; 
-            xL 1 zL]),
-        det([xK 1 zK; 
-            xL 1 zL; 
-            xI 1 zI]),
-        det([xL 1 zL; 
-            xI 1 zI; 
-            xJ 1 zJ]),
-        det([xI 1 zI; 
-            xJ 1 zJ; 
-            xK 1 zK])
-    ]
+    b1 = -1 * det(bb1)
+    b2 = 1 * det(bb2)
+    b3 = -1 * det(bb3)
+    b4 = 1 * det(bb4)
 
-     d = -[
-        det([xJ yJ 1; 
-            xK yK 1; 
-            xL yL 1]),
-        det([xK yK 1; 
-            xL yL 1; 
-            xI yI 1]),
-        det([xL yL 1;
-            xI yI 1; 
-            xJ yJ 1]),
-        det([xI yI 1;
-            xJ yJ 1; 
-            xK yK 1])
-    ]
+    c1 = -1 * det(cc1)
+    c2 = 1 * det(cc2)
+    c3 = -1 * det(cc3)
+    c4 = 1 * det(cc4)
 
-    # Build B matrix 6 x (3*4) with node order [u1 v1 w1 u2 v2 w2 ...]
-    B = zeros(6, 12)
-    # row 1: ε_xx = b1 u1 + b2 u2 + ...
-    B[1, 1] = b[1]
-    B[1, 4] = b[2]
-    B[1, 7] = b[3]
-    B[1, 10] = b[4]
-    # row 2: ε_yy = c1 v1 + c2 v2 + ...
-    B[2, 2] = c[1]
-    B[2, 5] = c[2]
-    B[2, 8] = c[3]
-    B[2, 11] = c[4]
-    # row 3: ε_zz = d1 w1 + ...
-    B[3, 3] = d[1]
-    B[3, 6] = d[2]
-    B[3, 9] = d[3]
-    B[3, 12] = d[4]
-    # row 4: ε_xy = c1 u1 + b1 v1 + ...
-    B[4, 1] = c[1]
-    B[4, 2] = b[1]
-    B[4, 4] = c[2]
-    B[4, 5] = b[2]
-    B[4, 7] = c[3]
-    B[4, 8] = b[3]
-    B[4, 10] = c[4]
-    B[4, 11] = b[4]
-    # row 5: ε_yz = d1 v1 + c1 w1 + ...
-    B[5, 2] = d[1]
-    B[5, 3] = c[1]
-    B[5, 5] = d[2]
-    B[5, 6] = c[2]
-    B[5, 8] = d[3]
-    B[5, 9] = c[3]
-    B[5, 11] = d[4]
-    B[5, 12] = c[4]
-    # row 6: ε_zx = b1 w1 + d1 u1 + ...
-    B[6, 1] = d[1]
-    B[6, 3] = b[1]
-    B[6, 4] = d[2]
-    B[6, 6] = b[2]
-    B[6, 7] = d[3]
-    B[6, 9] = b[3]
-    B[6, 10] = d[4]
-    B[6, 12] = b[4]
-    #
-    B0 = B/V6
-    return B0, V
+    d1 = -1 * det(dd1)
+    d2 = 1 * det(dd2)
+    d3 = -1 * det(dd3)
+    d4 = 1 * det(dd4)
+
+    B1 = [b1 0 0 b2 0 0 b3 0 0 b4 0 0]
+    B2 = [0 c1 0 0 c2 0 0 c3 0 0 c4 0]
+
+    B3 = [0 0 d1 0 0 d2 0 0 d3 0 0 d4]
+
+    B4 = [c1 b1 0 c2 b2 0 c3 b3 0 c4 b4 0]
+    B5 = [0 d1 c1 0 d2 c2 0 d3 c3 0 d4 c4]
+    B1 = [b1 0 0 b2 0 0 b3 0 0 b4 0 0]
+    B6 = [d1 0 b1 d2 0 b2 d3 0 b3 d4 0 b4]
+
+    B = [B1; B2; B3; B4; B5; B6] / (6 * V)
+
+    return B, V
 end
 

@@ -169,7 +169,7 @@ function Ke_Ce_Update!(FE_Ce, FE_Ke, FE_B0e,
                 # 4-node tetra (constant B)
                 Ce = Call_Ce(FE_dim, FE_material_E, FE_material_nu)
                 FE_Ce[:, :, e] = Ce
-                B, volume = tet_B_volume(e)
+                B1, volume1 = tet_B_volume(e)
                 FE_Ke[:, :, e] = FE_Ke[:, :, e] .+ volume * (B' * Ce * B)
                 FE_B0e[:, :, e] = B  # constant over element
 
