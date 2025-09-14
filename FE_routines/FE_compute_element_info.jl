@@ -18,8 +18,6 @@ function FE_compute_element_info(FE::FE_struct)
         # Centroid = mean of coordinates
         FE.centroids[:, e] .= sum(coords, dims=2)[:] / nen
 
-
-
         if dim == 2
             if el_type == :CPS3
                 x1, y1 = coords[:, 1]
@@ -39,6 +37,7 @@ function FE_compute_element_info(FE::FE_struct)
             end
         elseif dim == 3
             if el_type == :Tet4
+                # https://math.stackexchange.com/questions/1603651/volume-of-tetrahedron-using-cross-and-dot-product
                 v1 = coords[:, 2] - coords[:, 1]
                 v2 = coords[:, 3] - coords[:, 1]
                 v3 = coords[:, 4] - coords[:, 1]

@@ -1,0 +1,23 @@
+Analysis initiated from SIMULIA established products
+Abaqus JOB Lbracket3d
+Abaqus 2022
+Abaqus License Manager checked out the following licenses:
+Abaqus/Standard checked out 5 tokens from Flexnet server engr-license2.grove.ad.uconn.edu.
+<134 out of 240 licenses remain available>.
+Abaqus Warning: Your Abaqus license will expire in 16 days.
+Begin Analysis Input File Processor
+9/14/2025 11:33:44 AM
+Run pre.exe
+9/14/2025 11:33:49 AM
+End Analysis Input File Processor
+Begin Abaqus/Standard Analysis
+9/14/2025 11:33:49 AM
+Run standard.exe
+9/14/2025 11:33:54 AM
+End Abaqus/Standard Analysis
+Begin SIM Wrap-up
+9/14/2025 11:33:55 AM
+Run SMASimUtility.exe
+9/14/2025 11:33:55 AM
+End SIM Wrap-up
+Abaqus JOB Lbracket3d COMPLETED

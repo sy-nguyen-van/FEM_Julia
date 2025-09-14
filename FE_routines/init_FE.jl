@@ -53,25 +53,7 @@ function init_FE(OPT::OPT_struct, FE::FE_struct)
     # # Compute element volumes and centroidal coordinates
     FE = FE_compute_element_info(FE)
     ## Setup boundary conditions
-    if OPT.examples == "Lbracket2d"
-        FE = setup_bcs_Lbracket2d(OPT, FE)
-    elseif OPT.examples == "cantilever2d"   # Name of model
-        FE = setup_bcs_cantilever2d(OPT, FE)
-    elseif OPT.examples == "mbb2d"   # Name of model
-        FE = setup_bcs_mbb2d(OPT, FE)
-    elseif OPT.examples == "cracked_plate2d"
-        FE = setup_bcs_cracked_plate2d(OPT, FE)
-    elseif OPT.examples == "Vframe2d"
-        FE = setup_bcs_Vframe2d(OPT, FE)
-    elseif OPT.examples == "doubleLbracket2d"
-        FE = setup_bcs_doubleLbracket2d(OPT, FE)
-    elseif OPT.examples == "cantilever3d"
-        FE = setup_bcs_cantilever3d(OPT, FE)
-    elseif OPT.examples == "Lbracket2d_2_Loads"
-        FE = setup_bcs_Lbracket2d_2_Loads(OPT, FE)
-    elseif OPT.examples == "PennState_3points_bending"
-        FE = setup_bcs_3points_bending(OPT, FE)
-    end
+    FE = eval(Symbol("setup_bcs_"*OPT.examples))(OPT, FE)
     # # # initialize the fixed/free partitioning scheme:
     FE = FE_init_partitioning(FE)
     # # # # assemble the boundary conditions

@@ -15,6 +15,8 @@ function Additional_Functions()
     include("input_files/setup_bcs_mbb2d.jl")
     include("input_files/setup_bcs_Lbracket2d_2_Loads.jl")
     include("input_files/setup_bcs_3points_bending.jl")
+    
+    include("input_files/setup_bcs_Lbracket3d.jl")
     #-----------------------------------------------------
     push!(LOAD_PATH, "FE_routines")
     include("FE_routines/Call_Ce.jl")

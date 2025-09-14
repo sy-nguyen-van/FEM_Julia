@@ -52,6 +52,7 @@ function Be_Area(::Val{:Tet4}, e, FE_coords, FE_elem_node)
     xyz = [1 x1 y1 z1; 1 x2 y2 z2; 1 x3 y3 z3; 1 x4 y4 z4]
 
     V = det(xyz) / 6
+    # https://www.iue.tuwien.ac.at/phd/hollauer/node29.html#a6
     # Shape function
     # ai + bix + ciy + diz = Ni ; i= 1:4
     # a1 + b1x + c1y + d1z = N1
