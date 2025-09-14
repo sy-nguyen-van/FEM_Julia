@@ -14,31 +14,6 @@ This repository contains a **Finite Element Method (FEM) code in Julia**, transl
 * Modular and extensible design for experimenting with new elements
 * Original MRF functionality retained
 
-## Installation
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/your-repo.git
-cd your-repo
-```
-
-2. Open Julia and activate the project:
-
-```julia
-using Pkg
-Pkg.activate(".")
-Pkg.instantiate()
-```
-
-3. Required packages:
-
-```julia
-using LinearAlgebra, SparseArrays, StaticArrays
-```
-
-
-```
 
 ## Notes
 
@@ -50,7 +25,3 @@ using LinearAlgebra, SparseArrays, StaticArrays
 
 * Original MATLAB MRF code: [https://github.com/jnorato/MRF](https://github.com/jnorato/MRF)
 * FEM theory: standard textbooks on linear elasticity and finite elements
-
-## License
-
-This project is **MIT licensed**. See [LICENSE](LICENSE) for details.
