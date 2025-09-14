@@ -21,8 +21,9 @@ function init_FE(OPT::OPT_struct, FE::FE_struct)
         FE = gendoubleLbracketmesh(FE)
     elseif FE.mesh_input.type == "Lbracket2d_2_Loads"
         FE = genLbracketmesh(FE)
-    else FE.mesh_input.type == "Abaqus_Mesh"
-        model = abaqus_read_mesh("Abaqus_Mesh/" * OPT.examples * ".inp")
+    else
+        FE.mesh_input.type == "Mesh_files"
+        model = abaqus_read_mesh("Mesh_files/" * OPT.examples * ".inp")
         ind_nodes = sort(collect(keys(model["nodes"])))   # sorted node IDs
         nnodes = length(ind_nodes)
         ndim = length(first(values(model["nodes"])))
@@ -53,7 +54,7 @@ function init_FE(OPT::OPT_struct, FE::FE_struct)
     # # Compute element volumes and centroidal coordinates
     FE = FE_compute_element_info(FE)
     ## Setup boundary conditions
-    FE = eval(Symbol("setup_bcs_"*OPT.examples))(OPT, FE)
+    FE = eval(Symbol("setup_bcs_" * OPT.examples))(OPT, FE)
     # # # initialize the fixed/free partitioning scheme:
     FE = FE_init_partitioning(FE)
     # # # # assemble the boundary conditions

@@ -1,5 +1,5 @@
 function Additional_Functions()
-    push!(LOAD_PATH, "Abaqus_Mesh")
+    push!(LOAD_PATH, "Mesh_files")
     ## ============ADD PATH of SUB-FOLDERS===============
     push!(LOAD_PATH, "input_files")
     include("input_files/Generate_Struct.jl")
