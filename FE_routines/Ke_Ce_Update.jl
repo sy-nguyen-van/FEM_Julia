@@ -13,8 +13,8 @@ function Ke_Ce_Update!(FE_Ce, FE_Ke, FE_B0e,
                 # 3-node triangle (constant B, single integration)
                 Ce = Call_Ce(FE_dim, FE_material_E, FE_material_nu)
                 FE_Ce[:, :, e] = Ce
-                B, area = Be_Area(Val(:CPS3),e, FE_coords, FE_elem_node)
-                FE_Ke[:, :, e] =  area * (B' * Ce * B)
+                B, area = Be_Area(Val(:CPS3), e, FE_coords, FE_elem_node)
+                FE_Ke[:, :, e] = area * (B' * Ce * B)
                 FE_B0e[:, :, e] = B  # constant over element
 
             elseif nodes_per_elem == 4
@@ -53,13 +53,13 @@ function Ke_Ce_Update!(FE_Ce, FE_Ke, FE_B0e,
                 error("Unsupported nodes_per_elem = $nodes_per_elem for 2D (only 3 or 4 supported).")
             end
 
-        elseif  FE_dim == 3
+        elseif FE_dim == 3
             if nodes_per_elem == 4
                 # 4-node tetra (constant B)
                 Ce = Call_Ce(FE_dim, FE_material_E, FE_material_nu)
                 FE_Ce[:, :, e] = Ce
-                B, volume = Be_Area(Val(:Tet4),e, FE_coords, FE_elem_node)
-                FE_Ke[:, :, e] =  volume * (B' * Ce * B)
+                B, volume = Be_Area(Val(:Tet4), e, FE_coords, FE_elem_node)
+                FE_Ke[:, :, e] = volume * (B' * Ce * B)
                 FE_B0e[:, :, e] = B  # constant over element
 
             elseif nodes_per_elem == 8
