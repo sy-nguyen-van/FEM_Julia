@@ -18,7 +18,6 @@ examples = "cantilever3d"     # Name of model
 OPT, FE = Generate_Struct() # Initialization of OPT, FE structs
 path_output = "outputs/" * examples * "/"  # path of output folders
 OPT.examples = examples     # Update name of model
-OPT.fd_step_size = 1e-8     # Finite difference step
 ## =========================================================
 print("Start: ... \n")
 print("Problem: " * examples * "\n")
