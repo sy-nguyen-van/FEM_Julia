@@ -1,6 +1,6 @@
 # Julia FEM with Tri3, Quad4, Tet4, and Hex8 Elements
 
-This repository contains a **Finite Element Method (FEM) code in Julia**, translated from the original **MATLAB code** [MRF by jnorato](https://github.com/jnorato/MRF). It now supports multiple element types for 2D and 3D linear elasticity problems.
+This repository provides a Finite Element Method (FEM) implementation in Julia, adapted from the original **MATLAB code** [MRF by jnorato](https://github.com/jnorato/MRF). While the MATLAB version did not include support for Tri3 and Tet4 elements, this Julia version extends the functionality to handle multiple element types for 2D and 3D linear elasticity problems.
 
 ## Features
 
