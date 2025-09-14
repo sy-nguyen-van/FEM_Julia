@@ -50,7 +50,11 @@ function Be_Area(::Val{:Tet4}, e, FE_coords, FE_elem_node)
     x4, y4, z4 = FE_coords[1, nids[4]], FE_coords[2, nids[4]], FE_coords[3, nids[4]]
 
     xyz = [1 x1 y1 z1; 1 x2 y2 z2; 1 x3 y3 z3; 1 x4 y4 z4]
+
     V = det(xyz) / 6
+    # Shape function
+    # ai + bix + ciy + diz = Ni ; i= 1:4
+    # a1 + b1x + c1y + d1z = N1
     bb1 = [1 y2 z2; 1 y3 z3; 1 y4 z4]
     bb2 = [1 y1 z1; 1 y3 z3; 1 y4 z4]
     bb3 = [1 y1 z1; 1 y2 z2; 1 y4 z4]
@@ -83,9 +87,7 @@ function Be_Area(::Val{:Tet4}, e, FE_coords, FE_elem_node)
 
     B1 = [b1 0 0 b2 0 0 b3 0 0 b4 0 0]
     B2 = [0 c1 0 0 c2 0 0 c3 0 0 c4 0]
-
     B3 = [0 0 d1 0 0 d2 0 0 d3 0 0 d4]
-
     B4 = [c1 b1 0 c2 b2 0 c3 b3 0 c4 b4 0]
     B5 = [0 d1 c1 0 d2 c2 0 d3 c3 0 d4 c4]
     B1 = [b1 0 0 b2 0 0 b3 0 0 b4 0 0]

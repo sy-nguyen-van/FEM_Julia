@@ -99,7 +99,6 @@ function Ke_Ce_Update!(FE_Ce, FE_Ke, FE_B0e,
                     0 GN[3, 1] GN[2, 1] 0 GN[3, 2] GN[2, 2] 0 GN[3, 3] GN[2, 3] 0 GN[3, 4] GN[2, 4] 0 GN[3, 5] GN[2, 5] 0 GN[3, 6] GN[2, 6] 0 GN[3, 7] GN[2, 7] 0 GN[3, 8] GN[2, 8];
                     GN[3, 1] 0 GN[1, 1] GN[3, 2] 0 GN[1, 2] GN[3, 3] 0 GN[1, 3] GN[3, 4] 0 GN[1, 4] GN[3, 5] 0 GN[1, 5] GN[3, 6] 0 GN[1, 6] GN[3, 7] 0 GN[1, 7] GN[3, 8] 0 GN[1, 8]]
                 FE_B0e[:, :, e] = B0
-
             else
                 error("Unsupported nodes_per_elem = $nodes_per_elem for 3D (only 4 or 8 supported).")
             end
