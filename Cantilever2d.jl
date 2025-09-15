@@ -1,4 +1,3 @@
-using AbaqusReader
 using LinearAlgebra
 using SharedArrays
 ## ========INCLUDE PACKAGES=========
@@ -9,7 +8,6 @@ using Kronecker, NearestNeighbors, LazyGrids
 using Makie, CairoMakie
 using Makie.GeometryBasics
 using MuladdMacro
-using MshReader
 # =====USING Additional Functions =====================
 include("Additional_Functions.jl")
 Additional_Functions()

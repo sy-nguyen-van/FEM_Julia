@@ -22,13 +22,13 @@ function writevtk(OPT::OPT_struct, FE::FE_struct, folder)
     if elem_type == :CPS3
         nnodes = 3
         vtk_type = 5
-    elseif elem_type == :Quad4
+    elseif elem_type == :CPS4
         nnodes = 4
         vtk_type = 9
-    elseif elem_type == :Tet4
+    elseif elem_type == :C3D4
         nnodes = 4
         vtk_type = 10
-    elseif elem_type == :Hex8
+    elseif elem_type == :C3D8
         nnodes = 8
         vtk_type = 12
     else

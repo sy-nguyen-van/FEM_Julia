@@ -1,6 +1,6 @@
 function FE_compute_element_info(FE::FE_struct)
     el_type = FE.elem_type[1]
-    dim = el_type in (:CPS3, :Quad4) ? 2 : 3
+    dim = el_type in (:CPS3, :CPS4) ? 2 : 3
     FE.dim = dim
 
     FE.elem_vol = zeros(FE.n_elem)
@@ -24,7 +24,7 @@ function FE_compute_element_info(FE::FE_struct)
                 x2, y2 = coords[:, 2]
                 x3, y3 = coords[:, 3]
                 FE.elem_vol[e] = 0.5 * abs((x2 - x1)*(y3 - y1) - (x3 - x1)*(y2 - y1))
-            elseif el_type == :Quad4
+            elseif el_type == :CPS4
                 x1, y1 = coords[:, 1]
                 x2, y2 = coords[:, 2]
                 x3, y3 = coords[:, 3]
@@ -36,13 +36,13 @@ function FE_compute_element_info(FE::FE_struct)
                 error("Unsupported 2D element type: $el_type")
             end
         elseif dim == 3
-            if el_type == :Tet4
+            if el_type == :C3D4
                 # https://math.stackexchange.com/questions/1603651/volume-of-tetrahedron-using-cross-and-dot-product
                 v1 = coords[:, 2] - coords[:, 1]
                 v2 = coords[:, 3] - coords[:, 1]
                 v3 = coords[:, 4] - coords[:, 1]
                 FE.elem_vol[e] = abs(dot(v1, cross(v2, v3))) / 6
-            elseif el_type == :Hex8
+            elseif el_type == :C3D8
                 n1, n2, n3, n4, n5, n6, n7, n8 = eachcol(coords)
                 V = dot((n7-n2)+(n8-n1), cross(n7-n4, n3-n1)) +
                     dot((n8-n1), cross((n7-n4)+(n6-n1), n7-n5)) +

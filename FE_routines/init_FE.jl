@@ -22,34 +22,8 @@ function init_FE(OPT::OPT_struct, FE::FE_struct)
     elseif FE.mesh_input.type == "Lbracket2d_2_Loads"
         FE = genLbracketmesh(FE)
     else
-        FE.mesh_input.type == "Mesh_files"
-        model = abaqus_read_mesh("Mesh_files/" * OPT.examples * ".inp")
-        ind_nodes = sort(collect(keys(model["nodes"])))   # sorted node IDs
-        nnodes = length(ind_nodes)
-        ndim = length(first(values(model["nodes"])))
-        FE_coords = zeros(ndim, nnodes)
-        for (i, i_node) in enumerate(ind_nodes)
-            FE_coords[:, i] .= model["nodes"][i_node]   # fill column j with node coords
-        end
-        # ==========Connectivity========================
-        elem_ids = sort(collect(keys(model["elements"])))
-        nelem = length(elem_ids)
-        nen = length(first(values(model["elements"])))   # nodes per element
-        FE_elem_node = zeros(Int, nen, nelem)
-        FE_elem_type = Vector{Symbol}(undef, nelem)        # element type
-        for (e, eid) in enumerate(elem_ids)
-            FE_elem_node[:, e] .= model["elements"][eid]
-            FE_elem_type[e] = model["element_types"][eid]
-        end
-        # =========
-        FE.DirichletBC = model["node_sets"]["DirichletBC"]
-        FE.NeumannBC = model["node_sets"]["NeumannBC"]
-        # =========
-        FE.n_elem = nelem
-        FE.n_node = nnodes
-        FE.coords = FE_coords
-        FE.elem_node = FE_elem_node
-        FE.elem_type = FE_elem_type
+        name_file = "Mesh_files/" * OPT.examples
+        FE = read_mesh_Abaqus(FE, name_file)
     end
     # # Compute element volumes and centroidal coordinates
     FE = FE_compute_element_info(FE)

@@ -41,7 +41,7 @@ function Be_Area(::Val{:CPS3}, e, FE_coords, FE_elem_node)
 end
 
 # helper: linear tetra (4-node) -> returns B (6x12) and volume (scalar)
-function Be_Area(::Val{:Tet4}, e, FE_coords, FE_elem_node)
+function Be_Area(::Val{:C3D4}, e, FE_coords, FE_elem_node)
     # node ids for tetra
     nids = FE_elem_node[:, e]
     x1, y1, z1 = FE_coords[1, nids[1]], FE_coords[2, nids[1]], FE_coords[3, nids[1]]

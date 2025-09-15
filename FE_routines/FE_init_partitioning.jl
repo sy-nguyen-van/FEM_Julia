@@ -25,7 +25,7 @@ function FE_init_partitioning(FE::FE_struct)
     for e in 1:FE.n_elem
         el_type = FE.elem_type[e]
         nen = sum(FE.elem_node[:, e] .!= 0)
-        dim = el_type in (:CPS3, :Quad4) ? 2 : 3
+        dim = el_type in (:CPS3, :CPS4) ? 2 : 3
         n_elem_dof = nen * dim
         push!(n_elem_dof_vec, n_elem_dof)
     end
@@ -38,7 +38,7 @@ function FE_init_partitioning(FE::FE_struct)
         enodes = FE.elem_node[:, e]
 
         el_type = FE.elem_type[e]
-        dim = el_type in (:CPS3, :Quad4) ? 2 : 3
+        dim = el_type in (:CPS3, :CPS4) ? 2 : 3
         nen = length(enodes)
 
         if FE.dim == 2
