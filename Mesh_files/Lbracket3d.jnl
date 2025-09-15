@@ -19,3 +19,18 @@ mdb.models['Model-1'].parts['Part-1'].setElementType(elemTypes=(ElemType(
     ), ), ))
 # Save by snv22002 on 2025_09_14-21.43.01; build 2022 2021_09_15-13.57.30 176069
 # Save by snv22002 on 2025_09_14-21.43.01; build 2022 2021_09_15-13.57.30 176069
+from part import *
+from material import *
+from section import *
+from assembly import *
+from step import *
+from interaction import *
+from load import *
+from mesh import *
+from optimization import *
+from job import *
+from sketch import *
+from visualization import *
+from connectorBehavior import *
+mdb.models['Model-1'].rootAssembly.regenerate()
+# Save by snv22002 on 2025_09_14-22.28.24; build 2022 2021_09_15-13.57.30 176069
