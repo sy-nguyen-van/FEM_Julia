@@ -1,0 +1,14 @@
+<?xml version="1.0"?><msgwrapper><Started><phase type="symconst">BATCHPRE_PHASE</phase><jobName type="string">Cantilever_3D</jobName><clientHost type="string">D99NHQ2</clientHost><handle type="integer">0</handle></Started>
+<Odb_File><file type="string">C:\Users\snv22002\Documents\GitHub\FEM_Julia\Mesh_files\Cantilever_3D.odb</file><phase type="symconst">BATCHPRE_PHASE</phase><jobName type="string">Cantilever_3D</jobName></Odb_File>
+<Completed><message type="string">Analysis phase complete</message><phase type="symconst">BATCHPRE_PHASE</phase><jobName type="string">Cantilever_3D</jobName></Completed>
+<Started><phase type="symconst">STANDARD_PHASE</phase><jobName type="string">Cantilever_3D</jobName><clientHost type="string">D99NHQ2</clientHost><handle type="integer">43820</handle></Started>
+<Step><stepId type="integer">1</stepId><phase type="symconst">STANDARD_PHASE</phase><jobName type="string">Cantilever_3D</jobName></Step>
+<Odb_Frame><step type="integer">0</step><frame type="integer">0</frame><phase type="symconst">STANDARD_PHASE</phase><jobName type="string">Cantilever_3D</jobName></Odb_Frame>
+<MEMORY_ESTIMATE><memory type="float">126</memory><phase type="symconst">STANDARD_PHASE</phase><jobName type="string">Cantilever_3D</jobName></MEMORY_ESTIMATE>
+<PHYSICAL_MEMORY><physical_memory type="float">32467</physical_memory><phase type="symconst">STANDARD_PHASE</phase><jobName type="string">Cantilever_3D</jobName></PHYSICAL_MEMORY>
+<MINIMUM_MEMORY><minimum_memory type="float">25</minimum_memory><phase type="symconst">STANDARD_PHASE</phase><jobName type="string">Cantilever_3D</jobName></MINIMUM_MEMORY>
+<Odb_Frame><step type="integer">0</step><frame type="integer">1</frame><phase type="symconst">STANDARD_PHASE</phase><jobName type="string">Cantilever_3D</jobName></Odb_Frame>
+<Status><step type="integer">1</step><increment type="integer">1</increment><attempts type="integer">1</attempts><severe type="integer">0</severe><equilibrium type="integer">1</equilibrium><iterations type="integer">1</iterations><totalTime type="float">1</totalTime><stepTime type="float">1</stepTime><timeIncrement type="float">1</timeIncrement><phase type="symconst">STANDARD_PHASE</phase><jobName type="string">Cantilever_3D</jobName></Status>
+<End_Step><stepId type="integer">1</stepId><phase type="symconst">STANDARD_PHASE</phase><jobName type="string">Cantilever_3D</jobName></End_Step>
+<Completed><message type="string">Analysis phase complete</message><phase type="symconst">STANDARD_PHASE</phase><jobName type="string">Cantilever_3D</jobName></Completed>
+<JOB_COMPLETED><jobName type="string">Cantilever_3D</jobName><time type="string">Sat Oct  4 19:37:57 2025</time></JOB_COMPLETED></msgwrapper>

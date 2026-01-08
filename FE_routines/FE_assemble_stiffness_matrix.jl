@@ -6,7 +6,14 @@ function FE_assemble_stiffness_matrix(OPT::OPT_struct, FE::FE_struct)
 
     ## assemble and partition the global stiffness matrix
 
-    FE.sK_penal = FE.Ke[:]
+    penalized_rho_e = permutedims(
+        repeat(OPT.pen_rho_e[:], 1, FE.n_edof, FE.n_edof), [2, 3, 1])
+
+    # Ersatz material: 
+    penalized_Ke = penalized_rho_e .* FE.Ke
+    FE.sK_penal = penalized_Ke[:]
+
+    # FE.sK_penal = FE.Ke[:]
 
     # assemble the penalized global stiffness matrix (the sparse functions
     # accumulates values with repeated indices, which allows to assemble the

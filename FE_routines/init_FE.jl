@@ -13,6 +13,7 @@ function init_FE(OPT::OPT_struct, FE::FE_struct)
 
     if FE.mesh_input.type == "Lbracket2d"
         FE = genLbracketmesh(FE)
+        FE.elem_type = fill(:CPS4, FE.n_elem)
     elseif FE.mesh_input.type == "generate"
         FE = generate_mesh(FE)
     elseif FE.mesh_input.type == "V-frame"
@@ -34,6 +35,7 @@ function init_FE(OPT::OPT_struct, FE::FE_struct)
     # # # # assemble the boundary conditions
     FE = FE_assemble_BC(FE)
     # # # # initilization of optimization
+    OPT, FE = init_optimization(OPT, FE)
     # Material elasticity tensor
     if FE.dim == 2
         FE.Ce = SharedArray{Float64}(3, 3, FE.n_elem)

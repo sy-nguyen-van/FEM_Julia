@@ -24,7 +24,8 @@ OPT, FE = get_inputs(OPT, FE)   # get inputs from models
 # # ====================FEM=================================
 OPT, FE = init_FE(OPT, FE)      # Initialization of FEM model
 OPT, FE = perform_analysis(OPT, FE)  # Run 1st FEM analysis
-FE = compute_stress(FE)
+FE, strain = compute_stress(FE)
+
 writevtk(OPT, FE, path_output)
 
 

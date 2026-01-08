@@ -4,10 +4,12 @@ function Additional_Functions()
     push!(LOAD_PATH, "input_files")
     include("input_files/Generate_Struct.jl")
     include("input_files/get_inputs.jl")
+    include("input_files/inputs_Lbracket2d.jl")
     include("input_files/inputs_cantilever3d.jl")
     include("input_files/inputs_cantilever2d.jl")
     include("input_files/inputs_Lbracket3d.jl")
 
+    include("input_files/setup_bcs_Lbracket2d.jl")
     include("input_files/setup_bcs_cantilever3d.jl")
     include("input_files/setup_bcs_cantilever2d.jl") 
     include("input_files/setup_bcs_Lbracket3d.jl")
@@ -37,10 +39,23 @@ function Additional_Functions()
     include("functions/volume_fraction.jl")
     include("functions/compliance.jl")
     include("functions/compute_stress.jl")
+    include("functions/maximum_stress.jl")
+    include("functions/obj_nonlcon.jl")
     #------------------------------------------------------ 
     push!(LOAD_PATH, "plotting")
     include("plotting/writevtk.jl")
     #------------------------------------------------------
     push!(LOAD_PATH, "outputs")
     #------------------------------------------------------
+        ## ============ OPTIMIZATION ============ ##
+    push!(LOAD_PATH, "optimization")
+    include("optimization/init_optimization.jl")
+    include("optimization/runmma.jl")
+    include("optimization/kktcheck.jl")
+    include("optimization/mma1999.jl")
+    include("optimization/subsolv1999.jl")
+    include("optimization/ACS_Call.jl")
+        #------------------------------------------------------
+    push!(LOAD_PATH, "FD_check")
+    include("FD_check/run_finite_difference_check.jl")
 end

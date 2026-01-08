@@ -1,5 +1,6 @@
 function compute_stress(FE::FE_struct)
     sig_vm = zeros(FE.n_elem, FE.nloads)  # Preallocate
+    strain = zeros(6,FE.n_elem, FE.nloads)  # Preallocate
     
     for iload in 1:FE.nloads
         U_global = FE.U[:, iload]  # Global displacement vector
@@ -15,10 +16,10 @@ function compute_stress(FE::FE_struct)
             
             # Von Mises stress
             # If FE.V is scalar per element
-            sig_vm[e, iload] = sqrt(transpose(sigma_e) * FE.V* sigma_e)
+            sig_vm[e, iload] = sqrt(transpose(sigma_e) * FE.V* sigma_e)            
+            strain[:,e,iload] = Be * Ue
         end
     end
-    
     FE.svm = sig_vm
-    return FE
+    return FE, strain
 end
